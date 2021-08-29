@@ -18,8 +18,8 @@
 	<div class="d-flex flex-column vh-100">
 		<nav
 			class="navbar navbar-expand-sm bg-dark navbar-dark text-white font-weight-bold justify-content-between">
-			<a class="navbar-brand" href="#"> <img
-				src="/resources/images/logo-spring.png" width="30" height="30"
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/"> <img
+				src="${pageContext.request.contextPath}/resources/images/logo-spring.png" width="30" height="30"
 				class="d-inline-block align-top"> Spring
 			</a>
 			<div>
@@ -28,11 +28,11 @@
 					<button class="btn btn-success btn-sm">로그아웃</button>
 				</div>
 			</div>
-		</nav> <!-- 상단바 -->
+		</nav> <%-- 상단바 --%>
 
 		<div class="flex-grow-1 container-fluid">
 			<div class="row h-100">
-				<div class="col-md-4 p-3 bg-dark">  <!-- 왼쪽 메뉴  -->
+				<div class="col-md-4 p-3 bg-dark">  <%-- 왼쪽 메뉴 --%>
 					<div class="h-100 d-flex flex-column">
 						<div class="flex-grow-1"
 							style="height: 0px; overflow-y: auto; overflow-x: hidden;">
@@ -41,6 +41,6 @@
 					</div>
 				</div>
 
-				<div class="col-md-8 p-3">  <!-- 오른쪽 흰 부분  -->
+				<div class="col-md-8 p-3">  <%-- 오른쪽 흰 부분 --%>
 					<div class=" h-100 d-flex flex-column">
 						<div class="flex-grow-1 overflow-auto pr-3" style="height: 0px">
