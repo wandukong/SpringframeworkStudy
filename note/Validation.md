@@ -1,7 +1,7 @@
 
 # Validation
 
-##  Validator 구현하기
+## 🎁Validator 구현하기
 
 #### Validator 생성하기
 Validator 인터페이스를 구현하여 만든다.
@@ -101,8 +101,8 @@ public class Ch04MemeberJoinFormValidator implements Validator {
 	}
 }
 ```
-**에러 properties 파일**
- ch04_error_ko.xml
+**에러 properties 파일**   
+ch04_error_ko.xml
 ```
 errors.mid.required=회원 아이디는 필수 입력값입니다.
 errors.mid.minlength=회원 아이디는 {0}자 이상 입력해야 합니다.
@@ -117,7 +117,7 @@ errors.mtel.required=회원 전화번호는 필수 입력값입니다.
 errors.mtel.invalid=회원 전화번호가 유효하지 않습니다.
 ```
 
-## Validator 등록하기
+## 🎉Validator 등록하기
 
 **@Valid**
 - 해당 클래스의 멤버변수들을 유효성 검사하도록 한다.
