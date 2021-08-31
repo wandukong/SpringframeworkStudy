@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%> <%-- 태그 라이브러리 지시자 --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%-- 태그 라이브러리 지시자 --%>
 
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
@@ -171,7 +172,7 @@
 							value="2030-12-05">
 					</div>
 				</form>
-				<button class="btn btn-danger btn-sm" onclick="requestPost()">POST
+				<button class="btn btn-danger btn-sm  mt-2" onclick="requestPost()">POST
 					방식 요청</button>
 			</div>
 		</div>
@@ -224,41 +225,79 @@
 	<div class="card m-2">
 		<div class="card-header">서버측 유효성 검사</div>
 		<div class="card-body">
-			<form method="post" action="method2">
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">mid</span>
-					</div>
-					<input type="text" name="mid" class="form-control"
-						value="${joinForm.mid}" autocomplete="additional-name">
-					<form:errors cssClass="error" path="joinForm.mid" /> <%-- 스프링에서 제공하는 form태그 --%>
+			<div class="card m-2">
+				<div class="card-header">회원 가입 폼</div>
+				<div class="card-body">
+
+					<form method="post" action="join">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">mid</span>
+							</div>
+							<input type="text" name="mid" class="form-control"
+								value="${joinForm.mid}" autocomplete="user-name">
+							<form:errors cssClass="text-danger" path="joinForm.mid" />
+							<%-- member 변수와 errorCode를 모두 같게 하여, form:erros의 path에 넣는다. --%>
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">mpassword</span>
+							</div>
+							<input type="password" name="mpassword" class="form-control"
+								value="${joinForm.mpassword}" autocomplete="current-password">
+							<form:errors cssClass="text-danger" path="joinForm.mpassword" />
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">memail</span>
+							</div>
+							<input type="text" name="memail" class="form-control"
+								value="${joinForm.memail}">
+							<form:errors cssClass="text-danger" path="joinForm.memail" />
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">mtel</span>
+							</div>
+							<input type="text" name="mtel" class="form-control"
+								value="${joinForm.mtel}">
+							<form:errors cssClass="text-danger" path="joinForm.mtel" />
+						</div>
+						<input class="btn btn-info mt-2" type="submit" value="가입" />
+					</form>
+
 				</div>
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">mpassword</span>
-					</div>
-					<input type="password" name="mpassword" class="form-control"
-						value="${joinForm.mpassword}" autocomplete="current-password">
-					<form:errors cssClass="error" path="joinForm.mpassword"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="card m-2">
+		<div class="card-header">서버측 유효성 검사</div>
+		<div class="card-body">
+			<div class="card m-2">
+				<div class="card-header">로그인 폼</div>
+				<div class="card-body">
+					<form method="post" action="login">
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">mid</span>
+							</div>
+							<input type="text" name="mid" class="form-control"
+								value="${loginForm.mid}">
+							<form:errors cssClass="error" path="loginForm.mid" />
+						</div>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">mpassword</span>
+							</div>
+							<input type="password" name="mpassword" class="form-control"
+								value="${loginForm.mpassword}">
+							<form:errors cssClass="error" path="loginForm.mpassword" />
+						</div>
+						<input class="btn btn-info mt-2" type="submit" value="로그인"  />
+					</form>
 				</div>
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">memail</span>
-					</div>
-					<input type="text" name="memail" class="form-control"
-						value="${joinForm.memail}">
-					<form:errors cssClass="error" path="joinForm.memail" />
-				</div>
-				<div class="input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text">mtel</span>
-					</div>
-					<input type="text" name="mtel" class="form-control"
-						value="${joinForm.mtel}">
-					<form:errors cssClass="error" path="joinForm.mtel" />
-				</div>
-				<input class="btn btn-info" type="submit" value="가입" />
-			</form>
+			</div>
 		</div>
 	</div>
 </div>
