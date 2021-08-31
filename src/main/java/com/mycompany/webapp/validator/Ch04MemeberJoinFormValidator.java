@@ -12,6 +12,8 @@ import com.mycompany.webapp.dto.Ch04Member;
 public class Ch04MemeberJoinFormValidator implements Validator {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Ch04MemeberJoinFormValidator.class);
+	
+	
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -30,21 +32,21 @@ public class Ch04MemeberJoinFormValidator implements Validator {
 		
 		// mid 검사
 		if(member.getMid()==null || member.getMid().trim().equals("")) {
-			errors.rejectValue("mid","errors.mid.required"); // 만든 메시지에서 정의한 것을 참고한다. (errorCode, errorCode)
+			errors.rejectValue("mid","errors.mid.required"); // 만든 메시지에서 정의한 것을 참고한다. (field, errorCode)
 		}else if(member.getMid().length() < 4){
 			errors.rejectValue("mid","errors.mid.minlength",new Object[] {4}, ""); // (errorCode, errorCode,Object[] errorArgs, defaultMessage)
 		}
 		
 		// mpassword 검사
 		if(member.getMpassword()==null || member.getMpassword().trim().equals("")) {
-			errors.rejectValue("mpassword","errors.mpassword.required"); // 만든 메시지에서 정의한 것을 참고한다. (errorCode, errorCode)
+			errors.rejectValue("mpassword","errors.mpassword.required"); // 만든 메시지에서 정의한 것을 참고한다. (field, errorCode)
 		}else if(member.getMpassword().length() < 8){
 			errors.rejectValue("mpassword","errors.mpassword.minlength",new Object[] {8}, ""); 
 		}
 		
 		// memail 검사
 		if(member.getMemail()==null || member.getMemail().trim().equals("")) {
-			errors.rejectValue("memail","errors.memail.required"); // 만든 메시지에서 정의한 것을 참고한다. (errorCode, errorCode)
+			errors.rejectValue("memail","errors.memail.required"); // 만든 메시지에서 정의한 것을 참고한다. (field, errorCode)
 		}else{
 			String regExp = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
 			Pattern pattern = Pattern.compile(regExp);
@@ -55,7 +57,7 @@ public class Ch04MemeberJoinFormValidator implements Validator {
 		
 		//mtel 검사
 		if(member.getMtel()==null || member.getMtel().trim().equals("")) {
-			errors.rejectValue("mtel","errors.mtel.required"); // 만든 메시지에서 정의한 것을 참고한다. (errorCode, errorCode)
+			errors.rejectValue("mtel","errors.mtel.required"); // 만든 메시지에서 정의한 것을 참고한다. (field, errorCode)
 		}else{
 			String regExp = "^\\d{3}-\\d{3,4}-\\d{4}$"; //     \\ : 역슬래쉬 1개
 			Pattern pattern = Pattern.compile(regExp);
