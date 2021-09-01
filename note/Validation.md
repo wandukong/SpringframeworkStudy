@@ -3,6 +3,17 @@
 
 ## 🎁Validator 구현하기
 
+#### Validation Dependency 추가하기
+**pom.xml**
+```xml
+<!-- 유효성 검사를 위한 dependency -->
+<dependency>
+	<groupId>javax.validation</groupId>
+	<artifactId>validation-api</artifactId>
+	<version>2.0.1.Final</version>
+</dependency>
+```
+
 #### Validator 생성하기
 Validator 인터페이스를 구현하여 만든다.
 각 필드마다 혹은 form마다 구현할 수 있다.
