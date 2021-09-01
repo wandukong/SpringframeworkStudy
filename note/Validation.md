@@ -13,6 +13,7 @@
 	<version>2.0.1.Final</version>
 </dependency>
 ```
+<hr />
 
 #### Validator 생성하기
 Validator 인터페이스를 구현하여 만든다.
