@@ -29,7 +29,7 @@
 ### dispatcher servlet 생성
 - dispatcher servlet은 여러개 만들 수 있다.
 - load-on-startup을 작성하면, was에 의해 처음 구동될때 **dispatcher servlet 객체를 미리 만들어** 놓아 실행속도를 높인다.
-- contextConfigLocation은 다른 이름으로 사용할 수 없다.
+- dispatcher servlet에서 contextConfigLocation을 변수로 읽기 때문에 다른 이름으로 사용할 수 없다.
 ```xml
 <servlet>
 		<servlet-name>appServlet</servlet-name>
