@@ -22,8 +22,25 @@
 	<li class="nav-item mb-2">
 		<h6 class="text-white">
 			<span class="mr-1">Ch04.</span>
-			<a class="text-warning" href="${pageContext.request.contextPath}/ch04/content">Controller/유효성 검사</a>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch04/content">Controller/Validation</a>
 		</h6>
 	</li>
-	
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch05.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch05/content">Controller/Header & Cookie</a>
+		</h6>
+	</li>
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch06.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch06/content">Controller/Forward & Redirect</a>
+		</h6>
+	</li>
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch07.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch07/content">Controller/Data Delivery</a>
+		</h6>
+	</li>
 </ul>
