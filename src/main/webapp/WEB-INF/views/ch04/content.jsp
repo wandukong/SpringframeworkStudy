@@ -133,21 +133,21 @@
 				<form method="post" name="form1" id="form1">
 					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">주민번호</span>
+							<span class="input-group-text">ID</span>
 						</div>
 						<input type="text" id="param1" name="param1" class="form-control">
 						<span class="param1-error text-danger">*</span>
 					</div>
 					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">param2</span>
+							<span class="input-group-text">Phone</span>
 						</div>
 						<input type="text" id="param2" name="param2" class="form-control">
 						<span class="param2-error text-danger">*</span>
 					</div>
 					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">param3</span>
+							<span class="input-group-text">E-mail</span>
 						</div>
 						<input type="text" id="param3" name="param3" class="form-control">
 						<span class="param3-error text-danger">*</span>
@@ -166,41 +166,79 @@
 					</div>
 					<div class="input-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text">param5</span>
+							<span class="input-group-text">Date</span>
 						</div>
-						<input type="date" id="param5" name="param5" class="form-control"
-							value="2030-12-05">
+						<input type="date" id="param5" name="param5" class="form-control">
+							<span class="param5-error text-danger">*</span>
 					</div>
 				</form>
 				<button class="btn btn-danger btn-sm  mt-2" onclick="requestPost()">POST
 					방식 요청</button>
 			</div>
-		</div>
-		<script>
+			<script>
 				function requestPost(){
-					const param1 = $("#param1").val();  // 주민번호 xxxxxx-(1,2,3,4개중에 한개)xxxxxx
-					const param2 = $("#param2").val();    // 년월일: 19680615
-					const param3 = $("#param3").val();  // 패스워드: 알파벳으로 시작하고 최소 8글자 최대 10자
-					const param4 = $("#form1 input[name=param4]:checked").val();
-					const param5 = $("#param5").val();
+					event.preventDefault(); // form의 제출 기능을 off
 					
-					let checkData = true;
+					let checkResult = true;
 					
-					const param1Error = $("#form1 .param1-error");
-					if(param1 === ""){
-						param1Error.html("필수 입력 사항");
-						checkData = false;
-						console.log("asd1");
-					}else{
-						const pattern = /^\d{2}([0]\d|[1][0-2])([0][1-9]|[1-2]\d|[3][0-1])[-]*[1-4]\d{6}$/;	 // ^ : 해당형식으로 시작, $: 해당 형식으로 끝나야함
-						const result = pattern.test(param1);
-						if(result == false){
-							param1Error.html("주민번호 형식이 아님");
-							checkData = false;
+					let param1 = form1.param1.value;
+					const param1Error = document.querySelector("#form1 .param1-error")
+					if(param1===""){
+						param1Error.innerHTML = "필수 입력 사항";
+						checkResult = false;
+					}
+					else {
+						if(param1.length < 8 || param1.length > 15){
+							param1Error.innerHTML = "8자 이상, 15이하로 입력";
+							checkResult = false;
 						}else{
-							param1Error.html("*");
-							checkData = true;
+							param1Error.innerHTML = "*"
+							checkResult = true;
 						}
+					}
+					
+					let param2 = form1.param2.value;
+					const param2Error = document.querySelector("#form1 .param2-error");
+					if(param2 === ""){
+						param2Error.innerHTML = "필수 입력 사항";
+						checkResult = false;
+					}else{
+						const pattern = /(010|010)-[0-9]{3,4}-[0-9]{4}/i;
+						let result = pattern.test(param2);
+						if(result === false){
+							param2Error.innerHTML = "전화번호 형식이 아닙니다.";
+							checkResult = false;
+						}else {
+							param2Error.innerHTML = "*"
+							checkResult = true;
+						}
+					}
+					
+					let param3 = form1.param3.value;
+					const param3Error = document.querySelector("#form1 .param3-error");
+					if(param3 === ""){
+						param3Error.innerHTML = "필수 입력 사항";
+						checkResult = false;
+					}else{
+						const pattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+						const result = pattern.test(param3);
+						if(result === false){
+							param3Error.innerHTML = "이메일 형식이 아닙니다.";
+							checkResult = false;
+						}else {
+							param3Error.innerHTML = "*"
+							checkResult = true;
+						}
+					}
+					
+					let param5 = form1.param5.value;
+					const param5Error = document.querySelector("#form1 .param5-error");
+					if(param5 === ""){
+						param5Error.innerHTML = "필수 입력 사항";
+						checkResult = false;
+					}else{
+						param5Error.innerHTML = "*"
+						checkResult = true;
 					}
 					
 					if(checkData){
@@ -221,6 +259,7 @@
 					}
 				}
 			</script>
+		</div>
 	</div>
 	<div class="card m-2">
 		<div class="card-header">서버측 유효성 검사</div>
@@ -283,7 +322,7 @@
 								<span class="input-group-text">mid</span>
 							</div>
 							<input type="text" name="mid" class="form-control"
-								value="${loginForm.mid}">
+								value="${loginForm.mid}" autocomplete="user-name">
 							<form:errors cssClass="error" path="loginForm.mid" />
 						</div>
 						<div class="input-group">
@@ -291,8 +330,8 @@
 								<span class="input-group-text">mpassword</span>
 							</div>
 							<input type="password" name="mpassword" class="form-control"
-								value="${loginForm.mpassword}">
-							<form:errors cssClass="error" path="loginForm.mpassword" />
+								value="${loginForm.mpassword}" auto>
+							<form:errors cssClass="error" autocomplete="current-password"/>
 						</div>
 						<input class="btn btn-info mt-2" type="submit" value="로그인"  />
 					</form>

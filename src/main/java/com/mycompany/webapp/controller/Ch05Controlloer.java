@@ -75,7 +75,7 @@ public class Ch05Controlloer {
 		Cookie cookie = new Cookie("useremail", "seungwan37@naver.com");
 		cookie.setPath("/ch05"); // 쿠키를 들고갈 경로를 설정해 준다. 보통 / 으로 설정한다.
 		cookie.setMaxAge(30 * 60); // 브라우저 종료되더라도 30분동안 쿠키 유지, default: session, 브라우저 종료되면 없어짐
-		cookie.setHttpOnly(true); // 자바스크립트를 포함한 스크립트 언어에서 접근하지 못하도록 설정.
+		cookie.setHttpOnly(false); // 자바스크립트를 포함한 스크립트 언어에서 접근하지 못하도록 설정.
 		cookie.setSecure(true); // https://만 전송
 
 		response.addCookie(cookie);
@@ -175,7 +175,7 @@ public class Ch05Controlloer {
 		builder.claim("userid", userid);
 		builder.claim("useremail", useremail);
 		builder.claim("username", username);
-		
+ 
 		// signature(서명) 설정
 		String secretKey = "abc12345";
 		builder.signWith(SignatureAlgorithm.HS256, secretKey.getBytes("UTF-8")); // header의 alg과 같은 값을 넣는다.

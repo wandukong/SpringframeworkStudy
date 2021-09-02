@@ -9,7 +9,7 @@
 			<div class="card-header">GET 방식으로 요청</div>
 			<div class="card-body">
 				<a class="btn btn-info btn-sm"
-					href="method1?param1=문자열&parm2=5&param3=3.14&param4=true&parm5=2021-08-27">요청</a>
+					href="method1?param1=문자열&param2=5&param3=3.14&param4=true&parm5=2021-08-27">요청</a>
 				<hr />
 
 				<%-- name으로 들어가는 값이 param의 이름이 된다. --%>
