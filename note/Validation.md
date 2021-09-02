@@ -113,6 +113,7 @@ public class Ch04MemeberJoinFormValidator implements Validator {
 	}
 }
 ```
+
 **에러 properties 파일**   
 ch04_error_ko.xml
 ```
@@ -127,6 +128,13 @@ errors.memail.invalid=회원 이메일이 유효하지 않습니다.
 
 errors.mtel.required=회원 전화번호는 필수 입력값입니다.
 errors.mtel.invalid=회원 전화번호가 유효하지 않습니다.
+```
+
+**에러 메시지 보여주는 jsp**
+```jsp
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+...   
+<form:errors cssClass="text-danger" path="joinForm.memail" /> <!-- 에러메시지띄어줌 -->
 ```
 
 ## 🎉Validator 등록하기
