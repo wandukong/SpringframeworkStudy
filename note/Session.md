@@ -64,12 +64,10 @@ public String logout(HttpSession session) {
 	...
 }
 ```
-
-<hr/>
 <hr/>
 <hr/>
 
-### HttpSession은 웹 어플리케이션에서 지속적으로 유지 되어야할 사용자 데이터를 저장할 때 사용한다. ex) 로그인 정보
+### HttpSession은 web app에서 지속적으로 유지 되어야할 사용자 데이터를 저장할 때 사용한다. ex) 로그인 정보
 ### @SessionAttributes는 임시직으로 데이터를 유지할 때 사용한다.
 
 ✔ **저장/읽기/제거 방법이 다르기  때문에 데이터를  저장/읽기/제거할 때 두 방법을 섞어 사용하지 않는 것이 좋다.**
