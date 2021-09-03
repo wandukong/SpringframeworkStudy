@@ -30,7 +30,7 @@ application.setAttribute("applicationData", "스프링프레임워크");
 ## 🟠HttpServletRequest 
 > HttpServletRequest 객체에 속성을 추가한다.
 
-#### .setAttribute("속성이름","속성값")
+**.setAttribute("속성이름","속성값")**
 ```java
 @RequestMapping("/saveData")
 public String saveData(HttpServletRequest request) {
@@ -42,13 +42,8 @@ public String saveData(HttpServletRequest request) {
 ## 🟡ModelAndView
 > ModelAndView 객체를 만들어서 반환한다.
  
-<<<<<<< Updated upstream
-**.addObject("속성이름","속성값")** : model에 속성 추가
-**.setViewName("뷰이름")** : model을 건내줄 view(jsp)
-=======
-#### .addObject("속성이름","속성값") : model에 속성 추가   
-####  .setViewName("뷰이름") : model을 건내줄 view(jsp)
->>>>>>> Stashed changes
+**.addObject("속성이름","속성값")** : model에 속성 추가   
+**.setViewName("뷰이름")** : model을 건내줄 view(jsp)   
 ```java
 @GetMapping("/objectSaveAndRead2")
 public ModelAndView objectSaveAndRead2() {
@@ -81,9 +76,9 @@ public String objectSaveAndRead3(Model model) {
 ```
 
 ## 🔵@ModelAttribute("속성이름")
-> 메소드 위에 @ModelAttribute를 추가하여 사용한다.
-> 해당 메소드가 실행되면 return 되는 값을  model의 속성 이름으로 사용한다.
-> 상위 경로에 속하는 경로가 호출 될때마다 해당 Model 객체가 생성된다.
+> 메소드 위에 @ModelAttribute를 추가하여 사용한다.   
+> 해당 메소드가 실행되면 return 되는 값을  model의 속성 이름으로 사용한다.   
+> 상위 경로에 속하는 경로가 호출 될때마다 해당 Model 객체가 생성된다.   
 ```java
 @ModelAttribute("colors") // 상위 경로인 /ch07 속하는 경로가 호출될때마다 실행됨. request 범위에 저장
 public String[] getColors() {
@@ -94,9 +89,9 @@ public String[] getColors() {
 ```
 
 ## 🟣@ModelAttribute을 이용해서 매개 변수 값 전달
->  매개변수 앞에 @ModelAttribute을 붙이면 해당 매개 변수가 model 객체가 된다.
->    return 되는 jsp로 model 객체를 보내서, 해당 jsp에서  사용할 수 있다.
-- modelAttribute에 괄호를 사용하지 않으면, 클래스 이름의 첫글자를 소문자로 바꾼 이름으로 사용할 수 있다.
+> 매개변수 앞에 @ModelAttribute을 붙이면 해당 매개 변수가 model 객체가 된다.   
+> return 되는 jsp로 model 객체를 보내서, 해당 jsp에서  사용할 수 있다.   
+- modelAttribute에 괄호를 사용하지 않으면, 클래스 이름의 첫글자를 소문자로 바꾼 이름으로 사용할 수 있다.   
 
 ```java
 @GetMapping("/argumentSaveAndRead1")
