@@ -14,7 +14,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">mid</span>
 				</div>
-				<input type="text" name="mid" class="form-control" autocomplete= />
+				<input type="text" name="mid" class="form-control" />
 			</div>
 			<div class="input-group">
 				<div class="input-group-prepend">

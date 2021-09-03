@@ -55,6 +55,17 @@
 				}
 			</script>
 		</div>
+		
+		<div class="card">
+         <div class="card-header">
+            FileUpload & FileDownload
+         </div>
+         <div class="card-body">
+            <a href="fileDownload?fileNo=1" class="btn btn-info btn-sm">파일 다운로드</a>
+            <hr/>
+            <img src="fileDownload?fileNo=1" width="200px"/>
+         </div>
+      </div>
 	</div>
 </div>
 

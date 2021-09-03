@@ -15,9 +15,8 @@
 				<p>서버: 세션 객체 생성->JSESSIONID 쿠키 발생</p>
 				<p>브라우저: JSESSIONID 쿠키 전송 -> 세션 객체 찾음 -> 세션 이용</p>
 				<p>
-					<a href="javascript:saveData()" class="btn btn-primary btn-sm">세션에
-						데이터 저장</a> <a href="javascript:readData()"
-						class="btn btn-primary btn-sm">세션 데이터 읽기</a>
+					<a href="javascript:saveData()" class="btn btn-primary btn-sm">세션에 데이터 저장</a> 
+					<a href="javascript:readData()"class="btn btn-primary btn-sm">세션 데이터 읽기</a>
 				</p>
 			</div>
 			<script>

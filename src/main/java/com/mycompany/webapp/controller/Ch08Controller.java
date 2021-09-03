@@ -29,7 +29,7 @@ public class Ch08Controller {
 		return "ch08/content";
 	}
 
-	// ajax를 이용해서 실습
+	// Ajax를 이용해서 실습
 	@GetMapping(value = "/saveData", produces = "application/json; charset=UTF-8")
 	@ResponseBody
 	public String saveData(String name, HttpSession session) {
@@ -68,7 +68,6 @@ public class Ch08Controller {
 	@GetMapping("/login")
 	public String loginForm() {
 		logger.info("loginForm 실행");
-
 		return "ch08/loginForm";
 	}
 
