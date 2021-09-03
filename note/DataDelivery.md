@@ -30,7 +30,7 @@ application.setAttribute("applicationData", "스프링프레임워크");
 ## 🟠HttpServletRequest 
 > HttpServletRequest 객체에 속성을 추가한다.
 
-**.setAttribute("속성이름","속성값")**
+#### .setAttribute("속성이름","속성값")
 ```java
 @RequestMapping("/saveData")
 public String saveData(HttpServletRequest request) {
@@ -42,8 +42,13 @@ public String saveData(HttpServletRequest request) {
 ## 🟡ModelAndView
 > ModelAndView 객체를 만들어서 반환한다.
  
+<<<<<<< Updated upstream
 **.addObject("속성이름","속성값")** : model에 속성 추가
 **.setViewName("뷰이름")** : model을 건내줄 view(jsp)
+=======
+#### .addObject("속성이름","속성값") : model에 속성 추가   
+####  .setViewName("뷰이름") : model을 건내줄 view(jsp)
+>>>>>>> Stashed changes
 ```java
 @GetMapping("/objectSaveAndRead2")
 public ModelAndView objectSaveAndRead2() {

@@ -68,7 +68,7 @@
 ## 👨‍💻Dispatcher Servlet 구현해보기
 
 ### class 생성
-HttpServlet을 상속받아 생성한다.
+http로부터 요청을 처리하기 위해서 HttpServlet을 상속받아 생성한다. 
 ```java
 public class DispatcherServlet extends HttpServlet {
 	...
@@ -105,7 +105,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 	String requestUri = request.getRequestURI(); 
 	String viewName ="redirect:/";
 	
-	//request mapping 
+	// 요청 경로별로 컨트롤러를 선택해서 실행 (Handler Mapping)
 	if(requestUri.startsWith("/ch01")) { 
 		Ch01Controller ctrl = new Ch01Controller();
 		viewName = ctrl.exec();
@@ -114,7 +114,7 @@ protected void service(HttpServletRequest request, HttpServletResponse response)
 		viewName = ctrl.exec();
 	}
 	
-	// 뷰 이름을 해석해서 redirect 할 것인지 forward 할 것인지를 결정
+	// 뷰 이름을 해석해서 redirect or forward 결정 (View Resolver)
 	if(viewName.startsWith("redirect:")) {
 		String uri = viewName.split(":")[1];
 		response.sendRedirect(uri);  
