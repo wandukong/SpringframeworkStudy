@@ -74,21 +74,21 @@ public String getCookie2(HttpServletRequest request) {
 ```
 ```java
 @GetMapping("/createJsonCookie")
-	public String createJsonCookie(HttpServletResponse response) throws UnsupportedEncodingException {
+public String createJsonCookie(HttpServletResponse response) throws UnsupportedEncodingException {
 
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("userid", "fall");
-		jsonObject.put("useremail", "fall@company.com");
-		jsonObject.put("username", "홍길동");
-		String json = jsonObject.toString();
-		
-		json = URLEncoder.encode(json, "UTF-8"); // utf-8 형태를 ASCII 형태로 인코딩
-		
-		Cookie cookie = new Cookie("user", json);
-		response.addCookie(cookie);
+	JSONObject jsonObject = new JSONObject();
+	jsonObject.put("userid", "fall");
+	jsonObject.put("useremail", "fall@company.com");
+	jsonObject.put("username", "홍길동");
+	String json = jsonObject.toString();
+	
+	json = URLEncoder.encode(json, "UTF-8"); // utf-8 형태를 ASCII 형태로 인코딩
+	
+	Cookie cookie = new Cookie("user", json);
+	response.addCookie(cookie);
 
-		return "redirect:/ch05/content";
-	}
+	return "redirect:/ch05/content";
+}
 ```
 
 ## 🍫JSON 쿠키 받기

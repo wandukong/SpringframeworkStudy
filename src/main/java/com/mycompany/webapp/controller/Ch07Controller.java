@@ -25,7 +25,7 @@ import com.mycompany.webapp.dto.Ch07Member;
 @Controller
 @RequestMapping("/ch07")
 public class Ch07Controller {
-	private static final Logger logger = LoggerFactory.getLogger(Ch06Controller.class);
+	private static final Logger logger = LoggerFactory.getLogger(Ch07Controller.class);
 
 	@RequestMapping("/content")
 	public String content() {
