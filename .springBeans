@@ -9,6 +9,8 @@
 	<configs>
 	</configs>
 	<autoconfigs>
+		<config>src/main/resources/spring/dispatcher/ch01_component_scan.xml</config>
+		<config>src/main/resources/spring/root/ch04_messagesource.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
