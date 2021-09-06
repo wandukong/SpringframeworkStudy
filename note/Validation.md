@@ -114,6 +114,21 @@ public class Ch04MemeberJoinFormValidator implements Validator {
 }
 ```
 
+**Context bean 추가 하기**
+root-context.xml
+```xml
+<!-- 에러 및 국제화 메시지를 위한 ResourceBundleMessageSource 관리빈 등록  -->
+<bean id="messageSource"
+  class="org.springframework.context.support.ResourceBundleMessageSource">   
+  <property name="basenames">
+	 <list>
+		<value>message.ch04_error</value>
+	 </list>
+  </property>
+  <property name="defaultEncoding" value="UTF-8"/>
+</bean> 
+```
+
 **에러 properties 파일**   
 ch04_error_ko.xml
 ```
