@@ -69,7 +69,7 @@ public class Ch10Controller {
 
 #### web.xml
 ```xml
-<!-- 404 에러 처라 -->
+<!-- 404 에러 처리 -->
 <error-page>
 	<error-code>404</error-code>
 	<location>/WEB-INF/views/error/404.jsp</location>
