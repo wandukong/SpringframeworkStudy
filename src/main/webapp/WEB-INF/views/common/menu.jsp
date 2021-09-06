@@ -61,4 +61,10 @@
 			<a class="text-warning" href="${pageContext.request.contextPath}/ch10/content">Controller/Exception Handling</a>
 		</h6>
 	</li>
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch11.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch11/content">View/Spring Tag Library</a>
+		</h6>
+	</li>
 </ul>
