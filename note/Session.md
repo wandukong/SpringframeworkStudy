@@ -39,7 +39,7 @@ public String readData(@SessionAttribute String name) {
 	...
 }
 ```
-#### # HttpSession 객체의 .getAttribute("이름")
+#### HttpSession 객체의 .getAttribute("이름")
 
 ```java
 public String readData(HttpSession session) {
