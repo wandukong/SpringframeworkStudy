@@ -77,7 +77,7 @@ public String objectSaveAndRead3(Model model) {
 
 ## 🔵@ModelAttribute("속성이름")
 > 메소드 위에 @ModelAttribute를 추가하여 사용한다.   
-> 해당 메소드가 실행되면 return 되는 값을  model의 속성 이름으로 사용한다.   
+> 해당 메소드가 실행되면 return 되는 값을  model 객체로 사용한다.   
 > 상위 경로에 속하는 경로가 호출 될때마다 해당 Model 객체가 생성된다.   
 ```java
 @ModelAttribute("colors") // 상위 경로인 /ch07 속하는 경로가 호출될때마다 실행됨. request 범위에 저장
@@ -91,7 +91,9 @@ public String[] getColors() {
 ## 🟣@ModelAttribute을 이용해서 매개 변수 값 전달
 > 매개변수 앞에 @ModelAttribute을 붙이면 해당 매개 변수가 model 객체가 된다.   
 > return 되는 jsp로 model 객체를 보내서, 해당 jsp에서  사용할 수 있다.   
-- modelAttribute에 괄호를 사용하지 않으면, 클래스 이름의 첫글자를 소문자로 바꾼 이름으로 사용할 수 있다.   
+- @modelAttribute에 괄호를 사용하지 않으면, 클래스 이름의 첫글자를 소문자로 바꾼 이름으로 사용할 수 있다.   
+- 객체만 @ModelAttribute를 지정하지 않아도, 자동으로 매핑이 된다.
+- 객체가 아닐 경우, 별칭을 사용해야한다.
 
 ```java
 @GetMapping("/argumentSaveAndRead1")
@@ -101,7 +103,7 @@ public String argumentSaveAndRead1(@ModelAttribute("kind") String kind, @ModelAt
 }
 	
 @GetMapping("/argumentSaveAndRead2")
-public String argumentSaveAndRead2(@ModelAttribute Ch07Cloth cloth) { 
+public String argumentSaveAndRead2(Ch07Cloth cloth) { // 객체이므로 @ModelAttribute 안써도됨.
 	return "ch07/argumentRead2";
 }
 ```
