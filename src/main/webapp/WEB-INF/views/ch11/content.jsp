@@ -24,6 +24,20 @@
 				<a href="form3" class="btn btn-info btn-sm">form3</a>
 			</div>
 		</div>
+		
+		<div class="card m-2">
+			<div class="card-header">DTO 객체의 필드값을 양식의 드롭다운리스트(radio 태그) 세팅</div>
+			<div class="card-body">
+				<a href="form4" class="btn btn-info btn-sm">form4</a>
+			</div>
+		</div>
+		
+		<div class="card m-2">
+			<div class="card-header">국제화를 적용한 폼</div>
+			<div class="card-body">
+				<a href="form5" class="btn btn-info btn-sm">form5</a>
+			</div>
+		</div>
 	</div>
 </div>
 

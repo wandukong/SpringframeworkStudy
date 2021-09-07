@@ -12,5 +12,5 @@ public class Ch11Member {
 	private String mjob;
 	private int mcity;
 	private String[] mlanguage;
-	private String[] mskill;
+	private int[] mskill;
 }

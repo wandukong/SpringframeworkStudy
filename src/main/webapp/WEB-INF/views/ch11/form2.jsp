@@ -63,7 +63,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="mcity">Job</label>
+				<label for="mcity">City</label>
 				<form:select path="mcity" class="form-control" items="${cityList}" itemValue="code" itemLabel="label" />
 			</div>
 

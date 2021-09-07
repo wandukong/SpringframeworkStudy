@@ -3,24 +3,24 @@
 
 <div class="card m-2">
 	<div class="card-header">
-		DTO 객체(Command Object)와 폼 연결
+		국제화를 적용한 폼
 	</div>
 	<div class="card-body">
-		<form:form method="post" modelAttribute="member"> <!--  method default: post --> <!--  modelAttribute 멤버 객체와 바인딩됨 -->  <!-- action을 써도되지만, 이 폼을 호출한 경로와 같은 경로로 post한다. -->
+		<form:form method="post" modelAttribute="member">
 		  <div class="form-group">
-		    <label for="mid">ID</label>
+		    <label for="mid"><spring:message code="join.form.mid"/></label>
 		    <form:input type="text" class="form-control" path="mid" />
 		  </div>
 		  <div class="form-group">
-		    <label for="mname">Name</label>
+		    <label for="mname"><spring:message code="join.form.mname"/></label>
 		    <form:input type="text" class="form-control" path="mname"/>
 		  </div>
 		  <div class="form-group">
-		    <label for="mpassword">Password</label>
+		    <label for="mpassword"><spring:message code="join.form.mpassword"/></label>
 		    <form:password class="form-control" path="mpassword" />
 		  </div>
 		  <div class="form-group">
-		    <label for="mnation">Nation</label>
+		    <label for="mnation"><spring:message code="join.form.mnation"/></label>
 		    <form:input type="text" class="form-control" path="mnation" />
 		  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
