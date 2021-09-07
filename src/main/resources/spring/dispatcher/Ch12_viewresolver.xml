@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ViewName을 Jsp로 경로로 해석 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="order" value="1"/> <!-- 우선 순위 결정 -->
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	<!-- ViewName을 객체 이름으로 해석 -->
+	<!-- jsp는 뷰를 만들기 위해 최적화된 것 -->
+	<!-- 컨트롤러에서도 응답을 만들 수 있는데, 이 응답을 만들 수 잇는 컨트롤러가 여러개이다 -->
+	<!-- 객체로 만들어 놓으면 공통으로 사용할 수 있다. -->
+	<!-- 이름을 리턴하면, dispacther Servlet은 해당 이름을 가진 객체로 요청을한다. -->
+	
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"/> <!-- 우선 순위 결정 -->
+	</bean>
+</beans>
