@@ -1,3 +1,4 @@
+
 # Spring Form Tag Library 
 > 폼 태그 라이브러리를 사용하면, 폼에 데이터를 바인딩하거나 에러메세지 처리 등을 간편하게 할 수 있다.
 
@@ -40,7 +41,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 }
 ```
 
-- Spring Tag Library 사용 전
+- Spring Form Tag Library 사용 전
   - forEach 문으로, mebmer 객체가 기본값으로 설정한 값을 골라낸다.
 ```html
 <form method="post" action="form2">
@@ -56,7 +57,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
   </div>
 </form> 
 ```
-- Spring Tag Libary  사용 후
+- Spring Form Tag Library 사용 후
 	- forEach을 하지 않아도, 기본값으로 설정해준다.
 	- items : 보여줄 option 값을 담은 객체
 	- path :  저장된 값을 path에 저장함, 모델 객체의 멤버변수들 중 하나, path는 name과 id 속성을 자동으로 생성한다.
@@ -88,7 +89,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 }
 ```
 
-- Spring Tag Library 사용 전
+- Spring Form Tag Library 사용 전
 ```html
 <form method="post" action="form2">
 	 <div class="form-group">
@@ -104,7 +105,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	  </div>
 </form> 
 ```
-- Spring Tag Libary  사용 후
+- Spring Form Tag Library 사용 후
 	- \<form:option> 태그를  추가적으로 사용한다.
 ```html
 <form:form modelAttribute="member">
@@ -139,7 +140,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 }
 ```
 
-- Spring Tag Library 사용 전
+- Spring Form Tag Library 사용 전
 ```html
 <form method="post" action="form2">
 	<div class="form-group">
@@ -154,7 +155,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	</div>
 </form> 
 ```
-- Spring Tag Libary  사용 후
+- Spring Form Tag Library 사용 후
 	- itemValue와 itemLabel 속성을 사용한다. items에 들어가는 객체의 멤버 변수이다.
 ```html
 <form:form modelAttribute="member">
@@ -189,7 +190,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	}
 ```
 
-- Spring Tag Library 사용 전
+- Spring Form Tag Library 사용 전
 	- 배열에 요소가 포함되었는지 확인을 위해, 이중 forEach문을 사용했다.
 	- 각 check option의 id와 label의 for속성을 status.count로 처리하였다.
 ```html
@@ -206,7 +207,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	</c:forEach>
 </form> 
 ```
-- Spring Tag Libary  사용 후
+- Spring Form Tag Library 사용 후
 	- 각 check option의 id와 label의 for속성을 path로 지정된 값에  자동으로 숫자를 하나씩 붙여준다.
 	- 기본값으로 설정한 값들을 자동으로 checked 해준다.
 ```html
@@ -219,8 +220,8 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 <hr />
 
 ### 2. value와 label이 다른 checkbox
-<img src="https://user-images.githubusercontent.com/47289479/132241392-43cc0092-2174-46e1-b12a-9aa5cf957d43.png" width=300px/>
-<img src="https://user-images.githubusercontent.com/47289479/132241430-6bbc06ca-5248-4c06-bb68-0673eced561d.png" width=800px/>
+<img src="https://user-images.githubusercontent.com/47289479/132282061-2a966e65-4709-4a9c-ba12-ae181f4160eb.png" width=300px/>
+<img src="https://user-images.githubusercontent.com/47289479/132282065-7e308d74-9a81-451b-ab5d-f3fa2d771f9c.png" width=800px/>
 
 ```java
 @GetMapping("/form3")
@@ -237,7 +238,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	}
 ```
 
-- Spring Tag Libary  사용
+- Spring Form Tag Library 사용
 	- itemValue와 itemLabel 속성을 사용한다. items에 들어가는 객체의 멤버 변수이다.
 	- 기본값으로 설정한 값들을 자동으로 checked 해준다.
 ```html
@@ -249,10 +250,15 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 </form:form> 
 ```
 
-## 🐸radioButtons 와 dto 객체와 바인딩
+
+
+## 🐰radioButtons 와 dto 객체와 바인딩
+<img src="https://user-images.githubusercontent.com/47289479/132282067-9270f360-74a0-4e50-a1f2-65d6ebb20aaa.png" width=300px/>
+<img src="https://user-images.githubusercontent.com/47289479/132282071-ae7f7c7a-2dd5-45ab-b8b2-429d942557ca.png" width=700px/>
+
 > **\<form:radiobuttons> 사용**
 - checkboxes와 사용 방법이 동일하다. radioButton은 한 개만 선택한다.
-- Spring Tag Libary  사용
+- Spring Form Tag Library 사용
 ```html
 <form:form modelAttribute="member" class="mt-3">
 	<div>
