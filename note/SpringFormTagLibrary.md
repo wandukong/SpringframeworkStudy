@@ -14,9 +14,15 @@
  - method : post가 default 값으로, 생략가능
  - action : 폼에 작성된 데이터를 처리할 url, default 값은 해당 폼을 요청한 url값으로 한다.
  
+### 태그 속성 
+ ** id : label 태그와 연동
+ ** name  : 서버에 전송되는 변수명
+ ** value : 서버로 전송되는 값
+ 
 ## 🐷drop down List (select) dto 객체와 바인딩
+> **\<form:select> 사용**
 
-### 1. 기본 적인 drop down list 
+### 1. 기본적인 drop down list 
 <img src="https://user-images.githubusercontent.com/47289479/132237507-e27a753e-b1e9-4b5e-884b-d934b7ab470b.png" width=300px/>
 
 ```java
@@ -53,7 +59,7 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 - Spring Tag Libary  사용 후
 	- forEach을 하지 않아도, 기본값으로 설정해준다.
 	- items : 보여줄 option 값을 담은 객체
-	- path:  저장된 값을 path에 저장함, 모델 객체의 멤버변수들 중 하나
+	- path :  저장된 값을 path에 저장함, 모델 객체의 멤버변수들 중 하나, path는 name과 id 속성을 자동으로 생성한다.
 ```html
 <form:form modelAttribute="member">
 	<div class="form-group">
@@ -136,16 +142,16 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 - Spring Tag Library 사용 전
 ```html
 <form method="post" action="form2">
-	 <div class="form-group">
-	    <label for="mcity">City</label>
-	    <select class="form-control" id="mcity" name="mcity">
-	    	<c:forEach var="city" items="${cityList}">
-	    		<option value="${city.code}"
-	    			<c:if test="${member.mcity==city.code}">selected</c:if>
-	    		>${city.label}</option>
-	    	</c:forEach>
-	    </select>
-	  </div>
+	<div class="form-group">
+		<label for="mcity">City</label>
+		<select class="form-control" id="mcity" name="mcity">
+			<c:forEach var="city" items="${cityList}">
+				<option value="${city.code}"
+					<c:if test="${member.mcity==city.code}">selected</c:if>
+				>${city.label}</option>
+			</c:forEach>
+		</select>
+	</div>
 </form> 
 ```
 - Spring Tag Libary  사용 후
@@ -153,14 +159,17 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 ```html
 <form:form modelAttribute="member">
 	<div class="form-group">
-			<label for="mcity">City</label>
-			<form:select path="mcity" class="form-control" 
-						items="${cityList}" itemValue="code" itemLabel="label" />
-		</div>
+		<label for="mcity">City</label>
+		<form:select path="mcity" class="form-control" 
+					items="${cityList}" itemValue="code" itemLabel="label" />
+	</div>
 </form:form>
 ```
 
 ## 🐰Checkbox 와 dto 객체와 바인딩
+> **\<form:checkboxes> 사용**
+
+### 1. 기본적인 checkbox
 <img src="https://user-images.githubusercontent.com/47289479/132241392-43cc0092-2174-46e1-b12a-9aa5cf957d43.png" width=300px/>
 <img src="https://user-images.githubusercontent.com/47289479/132241430-6bbc06ca-5248-4c06-bb68-0673eced561d.png" width=800px/>
 
@@ -205,5 +214,53 @@ public String form2(@ModelAttribute("member") Ch11Member member, Model model) {
 	<div>
 		<form:checkboxes items="${languageList}" path="mlanguage" class="ml-2 mr-1"/>
 	</div>
+</form:form> 
+```
+<hr />
+
+### 2. value와 label이 다른 checkbox
+<img src="https://user-images.githubusercontent.com/47289479/132241392-43cc0092-2174-46e1-b12a-9aa5cf957d43.png" width=300px/>
+<img src="https://user-images.githubusercontent.com/47289479/132241430-6bbc06ca-5248-4c06-bb68-0673eced561d.png" width=800px/>
+
+```java
+@GetMapping("/form3")
+	public String form3(@ModelAttribute("member") Ch11Member member, Model model) {
+		
+		List<Ch11Skill> skillList = new ArrayList<>();
+		skillList.add(new Ch11Skill(1, "SpringFramework"));
+		skillList.add(new Ch11Skill(2, "SpringBoot"));
+		skillList.add(new Ch11Skill(3, "Vue"));
+		model.addAttribute("skillList", skillList);
+
+		member.setMskill(new int[] { 1, 3 });
+		return "ch11/form3";
+	}
+```
+
+- Spring Tag Libary  사용
+	- itemValue와 itemLabel 속성을 사용한다. items에 들어가는 객체의 멤버 변수이다.
+	- 기본값으로 설정한 값들을 자동으로 checked 해준다.
+```html
+<form:form modelAttribute="member" class="mt-3">
+	<div>
+		<form:checkboxes items="${skillList}" path="mskill" cssClass="ml-3 mr-1" itemValue="code" itemLabel="label"/>　	
+	</div>
+	<button type="submit" class="btn btn-primary">제출</button>
+</form:form> 
+```
+
+## 🐸radioButtons 와 dto 객체와 바인딩
+> **\<form:radiobuttons> 사용**
+- checkboxes와 사용 방법이 동일하다. radioButton은 한 개만 선택한다.
+- Spring Tag Libary  사용
+```html
+<form:form modelAttribute="member" class="mt-3">
+	<div>
+		<form:radiobuttons items="${jobList}" path="mjob" cssClass="ml-3 mr-1"/>　	
+	</div>
+	<div>
+		<form:radiobuttons items="${cityList}" path="mcity" cssClass="ml-3 mr-1" itemValue="code" itemLabel="label"/>　	
+	</div>
+	<button type="submit" class="btn btn-primary btn-sm">제출</button>
 </form:form> 
 ```
