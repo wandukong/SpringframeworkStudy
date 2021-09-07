@@ -130,7 +130,7 @@ root-context.xml
 ```
 
 **에러 properties 파일**   
-ch04_error_ko.xml
+ch04_error_ko.properties
 ```
 errors.mid.required=회원 아이디는 필수 입력값입니다.
 errors.mid.minlength=회원 아이디는 {0}자 이상 입력해야 합니다.
