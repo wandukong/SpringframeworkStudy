@@ -13,13 +13,12 @@ public Ch13Service1(Ch13BoardDao1 ch13BoardDao1) {
 	this.ch13BoardDao1 = ch13BoardDao1;
 }
 ```
-
-- ref : 주입할 객체의 bean 이름 (id 혹은 name 참조) 
 ```xml
 <bean name=“name” class=“package…ClassName”>
 	<constructor-arg ref=“beanName”>
 </bean>
 ```
+- ref : 주입할 객체의 bean 이름 (id 혹은 name 참조) 
 ```xml
 <bean id="ch13BoardDao1" class="com.mycompany.webapp.dao.Ch13BoardDao1"/> <!-- IoC 관리 빈 생성 --!>
 
