@@ -63,9 +63,11 @@ public String fileUploadAttach(String title, String desc, MultipartFile attach)
 }
 ```
 ```html
-<input type="text" class="form-control" id="title" name="title" placeholder="파일 제목">
-<input type="text" class="form-control" id="desc" name="desc" placeholder="파일 설명">
-<input type="file" class="form-control-file" id="attach" name="attach" multiple>
+<form method="post" enctype="multipart/form-data" action="fileUpload"> 
+	<input type="text" class="form-control" id="title" name="title" placeholder="파일 제목">
+	<input type="text" class="form-control" id="desc" name="desc" placeholder="파일 설명">
+	<input type="file" class="form-control-file" id="attach" name="attach" multiple>
+</form>
 ```
 ```javascript
 function fileUpload(){
