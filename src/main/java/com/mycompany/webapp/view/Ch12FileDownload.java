@@ -18,8 +18,6 @@ import org.springframework.web.servlet.view.AbstractView;
 @Component
 public class Ch12FileDownload extends AbstractView{
 
-	private static final Logger looger = LoggerFactory.getLogger(Ch12FileDownload.class);
-	
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {  

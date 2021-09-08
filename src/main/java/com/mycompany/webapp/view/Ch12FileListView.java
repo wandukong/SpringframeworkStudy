@@ -18,8 +18,6 @@ import org.springframework.web.servlet.view.AbstractView;
 @Component
 public class Ch12FileListView extends AbstractView{
 	
-	private static final Logger looger = LoggerFactory.getLogger(Ch12FileListView.class);
-
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -50,5 +48,4 @@ public class Ch12FileListView extends AbstractView{
 		pw.flush();
 		pw.close();
 	}
-
 }
