@@ -1,31 +1,13 @@
-
 # DI(Dependency Injection)
 > 객체 실행에 필요한 다른 객체를 외부에서 주입하는 개념이다.   
 
 <img src="https://user-images.githubusercontent.com/47289479/132450288-2116e6a2-d3b4-4145-b0da-f9735a79e661.png" width=400px /> <br/>
 <img src="https://user-images.githubusercontent.com/47289479/132450511-45dab0c9-4251-4737-b2bf-e06952d7265a.png" width=800px />
-#### <bean> 방법은 2가지 (생성자, setter 주입 방식) 사용가능
-
-**생성자 주입 방식**
-- 컨트롤러에서는 생성자 주입 방식을 사용할 수 없다.
-	- 빈이 컨트롤러를 기본 생성자를 사용하여 컨트롤러 객체를 생성하기 때문에
-
-```java
-public Ch13Service1(Ch13BoardDao1 ch13BoardDao1) {
-	this.ch13BoardDao1 = ch13BoardDao1;
-}
-```
-
-**setter 주입 방식**
-
-
-#### 어노테이션 방법은 3가지( 필드, 생성자, setter 주입 방식) 사용가능
-
 
 ## 🍄XML(\<bean>) 을 이용한 방법
 - XML을 이용한 방법은 생성자와 Setter 주입 방식 2가지가 있다.
 
-#### 생성자(constructor) 주입
+### 1. 생성자(constructor) 주입
 ```java
 public Ch13Service1(Ch13BoardDao1 ch13BoardDao1) {
 	this.ch13BoardDao1 = ch13BoardDao1;
@@ -45,7 +27,9 @@ public Ch13Service1(Ch13BoardDao1 ch13BoardDao1) {
 	<constructor-arg ref="ch13BoardDao1"/>
 </bean>
 ```
-#### 프로퍼티(Setter) 주입
+<hr />
+
+### 2. 프로퍼티(Setter) 주입
 ```java
 public void setCh13BoardDao1(Ch13BoardDao1 ch13BoardDao1) { 
 	this.ch13BoardDao1 = ch13BoardDao1;
@@ -95,14 +79,14 @@ public class Ch13Service2 {
 - @Resource는 생상자에는 적용할 수 없다.
 <hr />
 
-### 필드에 사용
+### 1. 필드에 사용
 - 필드에 자동으로 객체를 주입한다.
 ```java
 @Resource 
 private Ch13BoardDao2 ch13BoardDao2;
 ```
 
-#### Setter에 사용
+### 2. Setter에 사용
 - 자동으로 setter를 호출하게 하여, 매개 변수에 자동으로 객체를 주입한다.
 ```java
 @Resource 
@@ -110,7 +94,7 @@ public void setCh13BoardDao2(Ch13BoardDao2 ch13BoardDao2) {
 	this.ch13BoardDao2 = ch13BoardDao2;
 }
 ```
-### 생성자에 사용
+### 3. 생성자에 사용
 - 거의 사용 안함
 
 --------------------------------------------------------------------------------
@@ -211,5 +195,3 @@ public class Ch13Service6 {
 	}
 }
 ```
-
-
