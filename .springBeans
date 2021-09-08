@@ -12,6 +12,7 @@
 		<config>src/main/resources/spring/root/ch13_di.xml</config>
 		<config>src/main/resources/spring/root/ch01_component_scan.xml</config>
 		<config>src/main/resources/spring/dispatcher/ch01_resources.xml</config>
+		<config>src/main/resources/spring/dispatcher/ch13_di.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

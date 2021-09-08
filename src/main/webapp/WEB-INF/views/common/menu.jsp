@@ -73,4 +73,10 @@
 			<a class="text-warning" href="${pageContext.request.contextPath}/ch12/content">View/BeanNameViewResolver</a>
 		</h6>
 	</li>
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch13.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch13/content">Dependency Injection</a>
+		</h6>
+	</li>
 </ul>

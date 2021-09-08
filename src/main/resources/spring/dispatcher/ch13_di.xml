@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 컨트롤러 객체 생성 @Controller랑 같은 효과--> <!-- 동일한 이름으로 동일한 객체를 만들지 않는다. -->
+	<bean id="ch13Controller" class="com.mycompany.webapp.controller.Ch13Controller">
+		<property name="ch13Service1" ref="ch13Service1"></property>
+	</bean>
+
+</beans>
