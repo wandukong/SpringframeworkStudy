@@ -1,5 +1,9 @@
 package com.mycompany.webapp.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
@@ -112,18 +116,23 @@ public class Ch08Controller {
 		String json = jsonObject.toString();
 		return json;
 	}
-
-	@GetMapping(value = "/logoutAjax", produces = "application/json; charset=UTF-8")
-	@ResponseBody
-	public String loginAjax(HttpSession session) {
+	
+	@GetMapping(value = "/logoutAjax")
+	public void logoutAjax(HttpSession session, HttpServletResponse response) throws IOException {
 		logger.info("logoutAjax 실행");
 
 		session.invalidate();
-
+		
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter pw = response.getWriter();
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", "success");
 		String json = jsonObject.toString();
-		return json;
+		pw.println(json);
+		//pw.flush();  
+		//pw.close(); // close()를 하지 않아도 dispatcher Servlet이  자동적으로 해준다.
+		// close()를 하지 않으면, session.invalidate()가 모두 실행되고 나서, dipatcher sevlet이 close() 자동으로 해준다. 
 	}
 
 	// @SessionAttributes에 존재하면 한번만 실행된다.// session에 해당 속성이름이 존재하지 않을 때, 한번실행한다.
