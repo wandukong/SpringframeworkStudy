@@ -35,6 +35,12 @@
 
 
 ## 🎆Upload 
+
+### MultipartFile 객체
+- .getOriginalFilename() : 파일 이름
+- .getSize() : 파일 크기
+- .getContentType() : 파일 타입 
+- .transferTo("file명") : 파일 데이터를 파일로 저장함
 ```java
 @PostMapping(value = "/fileUploadAttach", produces = "application/json; charset=UTF-8")
 @ResponseBody
@@ -47,7 +53,7 @@ public String fileUploadAttach(String title, String desc, MultipartFile attach)
 	// 파일 파트 내용 읽기
 	logger.info("file originalname: " + attach.getOriginalFilename()); // photo12.jpg
 	logger.info("file contentType: " + attach.getContentType()); // image/jpeg
-	logger.info("file size: " + attach.getSize()); // 107447
+	logger.info("file size: " + ); // 107447
 
 	// 파일 파트 데이터를 서버의 파일로 저장
 	String savedname = new Date().getTime() + "-" + attach.getOriginalFilename();
