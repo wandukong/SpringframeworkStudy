@@ -57,6 +57,11 @@ public String logout(HttpSession session) {
 }
 ```
 #### HttpSession 객체의 .invalidate()
+- 비동기로 처리되어, 모든 세션을 지우고, jsessionid 세션을 만듬.
+	- @ResopnseBody는 브라우저 전송단계를 제어할 수 없어서, invalidate()가 끝나기 전에 브라우저에게 전송됨
+	- @ResopnseBody랑 사용하게 되면, 에러 발생
+	- 이를 해결하기 위해, PrintWriter 객체를 사용하고, flush(), close()를 사용하자.
+	- close()를 해주지 않으면, invalidate() 작업이 마무리 된 후, dispatcher servlet이 대신 해준다.
 ```java
 public String logout(HttpSession session) {
 	//모든 세션 무효화
