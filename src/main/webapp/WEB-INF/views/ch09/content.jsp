@@ -58,7 +58,7 @@
 		
 		<div class="card">
          <div class="card-header">
-            FileUpload & FileDownload
+            File Downlaod
          </div>
          <div class="card-body">
             <a href="fileDownload?fileNo=1" class="btn btn-info btn-sm">파일 다운로드</a>
