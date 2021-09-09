@@ -32,7 +32,7 @@ public void fileDownload(int fileNo, HttpServletResponse response, @RequestHeade
 	response.setHeader("Content-Disposition", "attachment; filename=\"" + originalFileName + "\"");
 
 	// 파일로부터 데이터를 읽는 입력스트림 생성
-	String filePath = "C:/hyundai_it&e/upload_files/" + savedName;
+	String filePath = "C:/hyundai_it&e/upload_files/" + savedName; // 파일을 불러올 경로
 	InputStream is = new FileInputStream(filePath);
 
 	// 응답 바디에 출력하는 출력 스트림 얻기
