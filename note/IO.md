@@ -174,7 +174,7 @@ Writer writer = new OutputStreamReader(fos);
 
 ## 👩‍🏫성능 향상 보조 스트림
 > 프로그램이 입출력 소스와 직접 작업하지 않고, 중간에 버퍼와 작업함으로써 실행 성능을 향상시킬 수 있다.
-- 버퍼는 데이터가 쌓이기를 기다렸다가 꽉 차게 되면 데이터를 한꺼번에 하드 디스크로 보냄으로써 출력 횟수를줄여준다.
+- 버퍼는 데이터가 쌓이기를 기다렸다가 꽉 차게 되면 데이터를 한꺼번에 하드 디스크로 보냄으로써 출력 횟수를 줄여준다.
 
 ### BufferedInputStream과 BufferdReader
 - 입력 데이터로부터 자신의 내부 버퍼 크기만큼 데이터를 미리 읽고 버퍼에 저장해둔다. 
@@ -244,6 +244,7 @@ dos.flush(); dos.close(); fos.close();
 ## 👩‍🌾프린터 보조 스트림 
 
 ### PrintWriter
+> 기본 타입의 데이터를 문자출력스트림에 보낸다.
 
 ```java
 PrintWriter pw = new PrintWriter(문자출력스트림);
@@ -261,10 +262,10 @@ pw.close();
 <hr />
 
 ### PrintStream
-바이트스트림
+> 기본 타입의 데이터를 바이트출력스트림에 보낸다.
 
 ```java
-PrintStream ps = new PrintStream(파일출력스트림);
+PrintStream ps = new PrintStream(바이트출력스트림);
 ```
 
 #### 메소드
