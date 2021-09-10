@@ -1,8 +1,7 @@
 
-
 # Input / Output
 
-## InputStream
+## 👮‍♂️InputStream
 > 바이트 기반 입력 스트림의 최상위 클래스로 추상 클래스이다.
 - BufferedInputStream, DataInputStream, FileInputStream이 InputStream 클래스를 상속하고 있다.
 
@@ -13,7 +12,7 @@
 - close() : 사용한 시스템 자원을 반납하고 출력스트림을 닫는다.
 
 
-## Outpstream
+## 👮‍♀️Outpstream
 > 바이트 기반 출력 스트림의 최상위 클래스로 추상 클래스이다.
 - FileOutputStream, DataOutputStream, PrintStream이 BufferedOutputStream 클래스를 상속하고 있다.
 
@@ -42,8 +41,7 @@ while(true) {
 os.close();
 ```
 
-
-## Reader 
+## 🕵️‍♂️Reader 
 > 문자 기반 입력 스트림의 최상위 클래스로 추상 클래스이다.
 - FileReader, BufferedReader, InputStreamReader는 모두 Reader 클래스를 상속한다.
 - read() : 한개의 문자를 읽고, 읽은 문자를 리턴한다.
@@ -51,7 +49,7 @@ os.close();
 - read(char[] c, int off, int len) : c의 배열에서 어디서부터 얼마나 읽을것인지 지정한다, 읽은 문자 길이 리턴
 - close() : 사용한 시스템 자원을 반납하고 출력스트림을 닫는다.
 
-## Writer
+## 🕵️‍♀️Writer
 > 문자 기반 출력 스트림의 최상위 클래스로 추상 클래스이다.
 - FileWriter, BufferedWriter, PrintWriter, OutputStreamReader는 모두 Writer 클래스를 상속한다.
 - write(char[] c) : c 배열의 크기만큼 출력한다.  
@@ -76,7 +74,7 @@ while(true) {
 writer.close();
 ```
 
-## File
+## 🎅File
 > 파일 크기, 파일 속성, 파일 이름 등의 정보를 얻어내는 기능과 파일 생성 및 삭제 기능을 제공한다.
 > 디렉토리를 생성하고, 디렉토리에 존재하는 파일 리스트를 얻어내는 기능도 있다.
 > 데이터를 읽고 쓰는 기능은 지원하지 않는다.
@@ -94,7 +92,7 @@ File file = new File("C:/Temp/ReadExample1.java");
 - .delete() : 파일 삭제
 
 
-## FileInputStream
+## 💂‍♂️FileInputStream
 > 파일로부터 바이트 단위로 읽어들일 때 사용하는 바이트 기반 입력스트림이다.
 > 바이트 단위로 읽기 때문에 그림, 오디오, 비디오, 텍스트 파일 등 모든 종류의 파일을 읽을 수 있다.
 
@@ -106,7 +104,7 @@ File file = new File("C:/Temp/forest.jpg");
 FileInputstream fis = new FileInputStream(file);
 ```
 
-## FileOutputStream
+## 💂‍♀️FileOutputStream
 > 바이트 단위로 데이터를 파일에 저장할 때 사용하는 바이트 기반 출력 스트림이다.
 > 바이트 단위로 저장하기 때문에 그림, 오디오, 비디오, 텍스트 파일 등 모든 종류의 데이터를 파일로 저장할 수 있다.
 
@@ -148,7 +146,7 @@ os.close();
 보조스트림 변수 = new 보조스트림(메인스트림);
 ```
 
-## 문자 변환 보조 스트림
+## 👨‍🏫문자 변환 보조 스트림
 > 바이트 기반 스트림보다 편하고, 문자셋의 종류를 지정할 수 있기 때문에 다양한 문자를 입출력할 수 있게 한다.
 
 ### InputStreamReader
@@ -174,7 +172,7 @@ FileOutputStream fos = new FileOutputStream("C:/Temp/forest2.jpg"); // 바이트
 Writer writer = new OutputStreamReader(fos);	
 ```
 
-## 성능 향상 보조 스트림
+## 👩‍🏫성능 향상 보조 스트림
 > 프로그램이 입출력 소스와 직접 작업하지 않고, 중간에 버퍼와 작업함으로써 실행 성능을 향상시킬 수 있다.
 - 버퍼는 데이터가 쌓이기를 기다렸다가 꽉 차게 되면 데이터를 한꺼번에 하드 디스크로 보냄으로써 출력 횟수를줄여준다.
 
@@ -195,7 +193,7 @@ BufferedOuputStream bis = new BufferedOutnputStream(바이트출력스트림);
 BufferedWriter br = new BufferWriter(문자출력스트림);
 ```
 
-## 기본 타입 입출력 보조 스트림
+## 👨‍🌾기본 타입 입출력 보조 스트림
 > 기본 타입으로 입출력이 가능해진다.
 
 ### DataInputStream
@@ -243,7 +241,7 @@ dos.writeInt(2);
 dos.flush(); dos.close(); fos.close();
 ```
 
-## 프린터 보조 스트림 
+## 👩‍🌾프린터 보조 스트림 
 
 ### PrintWriter
 
@@ -251,7 +249,7 @@ dos.flush(); dos.close(); fos.close();
 PrintWriter pw = new PrintWriter(문자출력스트림);
 ```
 
-###메소드
+#### 메소드
 - print(변수) : 출력할 데이터 타입에 따라 메소드 오버로딩이 되어 있다.
 
 ```java
@@ -260,6 +258,7 @@ pw.println(json);
 pw.flush();
 pw.close();
 ```
+<hr />
 
 ### PrintStream
 바이트스트림
@@ -268,7 +267,7 @@ pw.close();
 PrintStream ps = new PrintStream(파일출력스트림);
 ```
 
-###메소드
+#### 메소드
 - print(변수) : 출력할 데이터 타입에 따라 메소드 오버로딩이 되어 있다.
 
 ```java
@@ -279,4 +278,3 @@ ps.flush();
 ps.close();
 fos.close();
 ```
-
