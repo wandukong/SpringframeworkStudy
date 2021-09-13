@@ -1,5 +1,4 @@
-
-# DataBase Access
+# Database Access
 
 ## 📘JDBC
 > Java 응용프로그램이 DBMS에 연결하여 데이터베이스를 일관된 방법으로 이용할 수 있도록 만든 표준 API(인터페이스와 클래스)를 말한다.
