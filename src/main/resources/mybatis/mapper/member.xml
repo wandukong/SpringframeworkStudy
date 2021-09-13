@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	<insert id="insert" parameterType="member">
+		insert into member 
+		(mid, mname, mpassword, menabled, mrole) 
+		values (#{mid}, #{mname}, #{mpassword}, #{menabled}, #{mrole}) <!-- getter이름 -->
+	</insert>
+	
+	<select id="selectByMid" parameterType="string" resultType="member"> <!-- 파라미터타입과 리턴타입을 지정해준다. -->
+		select mid, mname, mpassword, menabled, mrole
+		from member
+		where mid=#{value}
+	</select>
+	
+			<!-- 기본타입만 앞에 언더바를 설정-->
+			<!-- int => _int -->
+			<!-- double => _double -->
+			<!-- 레퍼런스 타입은 앞글자를 소문자로 바꾼다 -->
+			<!-- String => string -->
+			<!-- Integer => integer -->
+</mapper>
