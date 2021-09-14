@@ -259,6 +259,12 @@ public Ch14Member selectByMid(String mid) {
 > mybatis에서 제공하는 mapper interface를 빈 객체로 주입 받아 DB에 접근할 수 있게 한다.
 - Dao를 interface로 작성하고, 해당 파일을 **@Mapper**를 이용하여 빈 객체로 만든다.
 - 기존에 사용하던 @Repository를 사용하지 않는다.
+- Dao의 method와 mappaer의 id를 매핑한다.
+- Dao의 parameter, return 값과 parameterType,resultType을 매핑한다.
+
+
+resultType은 검색 결과 한 행의 type을 지정하는 것이다.
+행이 여러개 나오면 해당 타입의 List에 담겨서 return된다.
 <br/>
 
 <img src="https://user-images.githubusercontent.com/47289479/133231429-9d914f11-4690-4bfc-a717-6016a3c3bf64.png" width=700px/>
