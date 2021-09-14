@@ -1,4 +1,5 @@
-# Database Access
+
+# DataBase Access
 
 ## 📘JDBC
 > Java 응용프로그램이 DBMS에 연결하여 데이터베이스를 일관된 방법으로 이용할 수 있도록 만든 표준 API(인터페이스와 클래스)를 말한다.
@@ -226,8 +227,8 @@ public Ch14Member selectByMid(String mid) {
 ```
 <hr />
 
-### Mapper xml 파일
-> 프로그램 객체를 DB 테이블과 작업을 하도록 SQL과 매핑을 정의한 XML 파일
+### mapper 파일
+#### member.xml
 - parameterType, resultType
 	- 	기본 타입은 앞에 언더바를 설정 
 		- int => _int 
@@ -236,8 +237,6 @@ public Ch14Member selectByMid(String mid) {
 		- String => string 
 		- Integer => integer 
 	- 클래스 이름은 config 설정 파일에서 설정한 alias를 사용할 수 있다.
-	
-#### member.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -253,5 +252,89 @@ public Ch14Member selectByMid(String mid) {
 		from member
 		where mid=#{value}
 	</select>
+</mapper>
+```
+
+## 📓@Mapper을 이용한 Dao 구현
+> mybatis에서 제공하는 mapper interface를 빈 객체로 주입 받아 DB에 접근할 수 있게 한다.
+- Dao를 interface로 작성하고, 해당 파일을 **@Mapper**를 이용하여 빈 객체로 만든다.
+- 기존에 사용하던 @Repository를 사용하지 않는다.
+<br/>
+
+<img src="https://user-images.githubusercontent.com/47289479/133231429-9d914f11-4690-4bfc-a717-6016a3c3bf64.png" width=700px/>
+<hr/>
+
+### dependency 추가
+```xml
+<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+<dependency>
+	<groupId>org.mybatis</groupId>
+	<artifactId>mybatis-spring</artifactId>
+	<version>2.0.6</version>
+</dependency>
+```
+<hr/>
+
+### 스프링 설정 파일 추가
+- @Mapper를 인식할 수 있도록 추가
+```xml
+<mybatis-spring:scan base-package="com.mycompany.webapp.dao"/>
+```
+<hr/>
+
+### Dao 인터페이스 작성
+```java
+package com.mycompany.webapp.dao;
+
+@Mapper
+public interface Ch14BoardDao {
+	public List<Ch14Board> selectByPage(Pager pager);
+	public int count();
+	public Ch14Board selectByBno(int bno);
+	public int insert(Ch14Board board);
+	public int delete(int bno);
+	public int update(Ch14Board board);
+}
+```
+<hr/>
+
+### Mapper XML 작성
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.Ch14BoardDao">
+	<select id="selectByPage" parameterType="pager" resultType="board">
+		<![CDATA[
+			select rnum, bno, btitle, bdate, mid 
+			from (
+	        		select rownum as rnum , bno, btitle, bdate, mid 
+	                from (	select bno, btitle, bdate, mid 
+	                        from board
+	                        order by bno desc )
+	        		where rownum <= #{endRowNo}
+			)
+			where rnum >= #{startRowNo}
+		]]>
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	<select id="selectByBno" parameterType="int" resultType="board">
+		select bno, btitle, bcontent, bdate, mid 
+		from board 
+		where bno=#{value}
+	</select>
+	<insert id="insert" parameterType="board">
+		insert into board (bno, btitle, bcontent, bdate ,mid)
+		values(seq_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{mid})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from board where bno=#{value}
+	</delete>
+	<update id="update" parameterType="board">
+		update board set btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+	</update>
 </mapper>
 ```
