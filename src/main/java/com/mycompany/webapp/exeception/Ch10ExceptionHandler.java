@@ -29,11 +29,11 @@ public class Ch10ExceptionHandler {
 	}
 	
 
-	@ExceptionHandler
-	public String handleRuntimeException(RuntimeException e) { 
-		logger.info("handleRuntimeException 실행");
-		return "error/500";
-	}
+//	@ExceptionHandler
+//	public String handleRuntimeException(RuntimeException e) { 
+//		logger.info("handleRuntimeException 실행");
+//		return "error/500";
+//	}
 	
 	@ExceptionHandler
 	public String handleSoldOutException (Chap10SoldOutException e) { 

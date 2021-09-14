@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+	
+		<!-- 
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/>
 		<property name="url" value="jdbc:oracle:thin:@kosa1.iptime.org:50108:orcl"/>
+		 -->
+		 
+		 <!-- DriverSpy를 거쳐서 jdbc Driver를 사용한다. -->
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@kosa1.iptime.org:50108:orcl"/>
+		
 		<property name="username" value="spring"/>
 		<property name="password" value="oracle"/>
-		
 		<property name="initialSize" value="2" />
 		<property name="maxTotal" value="3"/>
 		<property name="maxIdle" value="2"/> 
-	</bean>
+	</bean> 
+	
+	<!-- was에서 커넥션 풀 관리 -->
+	<!-- 
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/spring" expected-type="javax.sql.DataSource"></jee:jndi-lookup>
+	 -->
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -23,5 +37,5 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
-
+	
 </beans>

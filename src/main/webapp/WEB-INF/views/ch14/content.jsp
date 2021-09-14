@@ -26,8 +26,11 @@
 			<div class="card-body">
 			<a href="join" class="btn btn-success btn-sm">회원가입</a>
 			<a href="login" class="btn btn-primary btn-sm">로그인</a>
+			<a href="boardList" class="btn btn-primary btn-sm">게시판</a>
 			</div>
 		</div>
+		
+		
 	</div>
 </div>
 

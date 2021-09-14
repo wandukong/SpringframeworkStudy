@@ -3,5 +3,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="member" type="com.mycompany.webapp.dto.Ch14Member"/> <!-- 클래스에 alias(별명)를 지어주어, 대신 사용한다 -->
+		<typeAlias alias="board" type="com.mycompany.webapp.dto.Ch14Board"/> 
+		<typeAlias alias="pager" type="com.mycompany.webapp.dto.Pager"/> 
 	</typeAliases>
 </configuration>

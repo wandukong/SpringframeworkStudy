@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycompany.webapp.dao.Ch14BoardDao">
+	<select id="selectByPage" parameterType="pager" resultType="board">
+		
+		<![CDATA[
+			select rnum, bno, btitle, bdate, mid 
+			from (
+	        		select rownum as rnum , bno, btitle, bdate, mid 
+	                from (	select bno, btitle, bdate, mid 
+	                        from board
+	                        order by bno desc )
+	        		where rownum <= #{endRowNo}
+			)
+			where rnum >= #{startRowNo}
+		]]>
+	</select>
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	<select id="selectByBno" parameterType="int" resultType="board">
+		select bno, btitle, bcontent, bdate, mid 
+		from board 
+		where bno=#{value}
+	</select>
+	<insert id="insert" parameterType="board">
+		insert into board (bno, btitle, bcontent, bdate ,mid)
+		values(seq_bno.nextval, #{btitle}, #{bcontent}, sysdate, #{mid})
+	</insert>
+	<delete id="delete" parameterType="int">
+		delete from board where bno=#{value}
+	</delete>
+	<update id="update" parameterType="board">
+		update board set btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+	</update>
+</mapper>

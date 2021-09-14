@@ -3,19 +3,26 @@
 	PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" 
 	"http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
-	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+	<appender name="console"
+		class="org.apache.log4j.ConsoleAppender">
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%-5p: %c.%M() - %m%n" /> <!-- %-5p : level |  %c.%M() 클래스이름.메소드이름  |  -->
+			<param name="ConversionPattern" value="%-5p: %c.%M() - %m%n" /> <!-- %-5p : level | %c.%M() 클래스이름.메소드이름 | -->
 		</layout>
 	</appender>
-	
+
 	<!-- Application Loggers -->
-	
+
 	<logger name="com.mycompany.webapp">
+		<level value="info" />
+	</logger>
+
+	<!-- db 쿼리를 보여줌 -->
+	<logger name="jdbc.sqltiming">
 		<level value="info" />
 	</logger>
 
@@ -24,5 +31,5 @@
 		<priority value="warn" />
 		<appender-ref ref="console" />
 	</root>
-	
+
 </log4j:configuration>

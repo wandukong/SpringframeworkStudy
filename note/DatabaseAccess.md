@@ -226,8 +226,8 @@ public Ch14Member selectByMid(String mid) {
 ```
 <hr />
 
-### mapper 파일
-#### member.xml
+### Mapper xml 파일
+> 프로그램 객체를 DB 테이블과 작업을 하도록 SQL과 매핑을 정의한 XML 파일
 - parameterType, resultType
 	- 	기본 타입은 앞에 언더바를 설정 
 		- int => _int 
@@ -236,6 +236,8 @@ public Ch14Member selectByMid(String mid) {
 		- String => string 
 		- Integer => integer 
 	- 클래스 이름은 config 설정 파일에서 설정한 alias를 사용할 수 있다.
+	
+#### member.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">

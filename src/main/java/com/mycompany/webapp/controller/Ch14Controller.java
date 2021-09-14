@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -16,8 +17,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycompany.webapp.dto.Ch14Board;
 import com.mycompany.webapp.dto.Ch14Member;
+import com.mycompany.webapp.dto.Pager;
+import com.mycompany.webapp.service.Ch14BoardService;
 import com.mycompany.webapp.service.Ch14MemeberService;
 import com.mycompany.webapp.service.Ch14MemeberService.JoinResult;
 import com.mycompany.webapp.service.Ch14MemeberService.LoginResult;
@@ -176,8 +181,58 @@ public class Ch14Controller {
 			model.addAttribute("error", "패스워드가 잘못 되었습니다.");
 			return "ch14/loginForm";
 		}else {
-			model.addAttribute("error", "회원 가입이 실패되었습니다. 다시 시도해 주세요.");
+			model.addAttribute("error", "로그인에 실패하였습니다. 다시 시도해 주세요.");
 			return "ch14/loginForm";
 		}
+	}
+	
+	@Resource Ch14BoardService boardService;
+	
+	@GetMapping("/boardList")
+	public String BoardList(@RequestParam(defaultValue="1") int pageNo, Model model) {
+		int totalRows = boardService.getTotalBoardNum();
+		Pager pager = new Pager(10, 5, totalRows, pageNo);
+		List<Ch14Board> boards = boardService.getBoards(pager);
+		model.addAttribute("boards", boards);
+		model.addAttribute("pager",pager);
+		return "ch14/boardList";
+	}
+	
+	@GetMapping("/boardWriteForm")
+	public String boardWriteForm(Model model) {
+		return "ch14/boardWriteForm";
+	}
+	
+	@PostMapping("/boardWrite")
+	public String boardWrite(Ch14Board board) {
+		boardService.writeBoard(board);
+		return "redirect:/ch14/boardList";
+	}
+	
+	
+	@GetMapping("/boardDetail")
+	public String boardDetail(int bno, Model model) {
+		Ch14Board board = boardService.getBoard(bno);
+		model.addAttribute("board", board);
+		return "ch14/boardDetail";
+	}
+	
+	@GetMapping("/boardUpdateForm")
+	public String boardUpdateForm(int bno, Model model) {
+		Ch14Board board = boardService.getBoard(bno);
+		model.addAttribute("board", board);
+		return "ch14/boardUpdateForm";
+	}
+	
+	@PostMapping("/boardUpdate")
+	public String boardUpdate(Ch14Board board) {
+		boardService.updateBoard(board);
+		return "redirect:/ch14/boardDetail?bno=" + board.getBno();
+	}
+	
+	@GetMapping("/boardDelete")
+	public String boardDetail(int bno) {
+		boardService.removeBoard(bno);
+		return "redirect:/ch14/boardList";
 	}
 }
