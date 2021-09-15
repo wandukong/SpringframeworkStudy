@@ -1,5 +1,6 @@
 # AOP
 > 여러 객체에 공통으로 적용할 수 있는 기능을 구분함으로써 재사용을 높여주는 프로그래밍 기법
+> Aspect Oriented Programming
 
 <img src="https://user-images.githubusercontent.com/47289479/133353926-7a4260ab-d7b2-4d4e-8b78-6339c55b40e2.png" width=400px/>
 
