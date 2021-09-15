@@ -119,6 +119,7 @@ private static final Logger logger = LoggerFactory.getLogger(Ch15Aspect3After.cl
 > 핵심 로직이 예외를 발생시킬 때 공통 기능을 수행
 - 주로 예외 처리 코드가 공통 기능이 된다.
 - **throwing** 속성을 이용하여, 발생한 예외를 받아온다.
+- 예외 타입은 Exception의 상위 클래스인 **Throwable** 타입이다.
 ```java
 @Component
 @Aspect
