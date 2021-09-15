@@ -77,11 +77,7 @@ public class Ch15Controller {
 		List<Ch14Board> boards = boardService.getBoards(pager);
 		return "redirect:/ch15/content";
 	}
-	@RequestMapping("/authCheck")
-	public String authCheck() {
-		logger.info("authCheck 실행");
-		return "redirect:/ch15/content";
-	}
+
 	
 	@GetMapping("/login")
 	public String loginForm( ) {
