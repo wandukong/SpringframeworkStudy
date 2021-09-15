@@ -215,7 +215,7 @@ public Ch14Member selectByMid(String mid) {
 <hr />
 
 ### mapper-config.xml
-- typeAliases :  클래스에 alias(별명)를 지어주어, resultType 혹은 requestType에 사용한다 -->
+- typeAliases : 클래스에 alias(별명)를 지어주어, resultType 혹은 requestType에 사용한다.
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -261,10 +261,8 @@ public Ch14Member selectByMid(String mid) {
 - 기존에 사용하던 @Repository를 사용하지 않는다.
 - Dao의 method와 mappaer의 id를 매핑한다.
 - Dao의 parameter, return 값과 parameterType,resultType을 매핑한다.
-
-
-resultType은 검색 결과 한 행의 type을 지정하는 것이다.
-행이 여러개 나오면 해당 타입의 List에 담겨서 return된다.
+- resultType은 검색 결과 한 행의 type을 지정하는 것이다. 
+	- 행이 여러 개 나오면 해당 타입의 List에 담겨서 return된다.
 <br/>
 
 <img src="https://user-images.githubusercontent.com/47289479/133231429-9d914f11-4690-4bfc-a717-6016a3c3bf64.png" width=700px/>
