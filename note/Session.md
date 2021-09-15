@@ -60,24 +60,32 @@ public String logout(HttpSession session) {
 - 비동기로 처리되어, 모든 세션을 지우고, jsessionid 세션을 만듬.
 	- @ResopnseBody는 브라우저 전송단계를 제어할 수 없어서, invalidate()가 끝나기 전에 브라우저에게 전송됨
 	- @ResopnseBody랑 사용하게 되면, 에러 발생
-	- 이를 해결하기 위해, PrintWriter 객체를 사용하고, flush(), close()를 사용하자.
+	- 이를 해결하기 위해, PrintWriter 객체를 사용하고, flush(), close()를 사용하지 않는다.
 	- close()를 해주지 않으면, invalidate() 작업이 마무리 된 후, dispatcher servlet이 대신 해준다.
 ```java
-public String logout(HttpSession session) {
-	//모든 세션 무효화
+@GetMapping(value = "/logoutAjax")
+public void logoutAjax(HttpSession session, HttpServletResponse response) throws IOException {
+	logger.info("logoutAjax 실행");
+
 	session.invalidate();
-	...
+	
+	response.setContentType("application/json; charset=UTF-8");
+	PrintWriter pw = response.getWriter();
+	
+	JSONObject jsonObject = new JSONObject();
+	jsonObject.put("result", "success");
+	String json = jsonObject.toString();
+	pw.println(json);
+	//pw.flush();  
+	//pw.close(); // close()를 하지 않아도 dispatcher Servlet이  자동적으로 해준다.
 }
 ```
-<hr/>
 <hr/>
 
 ### HttpSession은 web app에서 지속적으로 유지 되어야할 사용자 데이터를 저장할 때 사용한다. ex) 로그인 정보
 ### @SessionAttributes는 임시직으로 데이터를 유지할 때 사용한다.
 
 ✔ **저장/읽기/제거 방법이 다르기  때문에 데이터를  저장/읽기/제거할 때 두 방법을 섞어 사용하지 않는 것이 좋다.**
-
-
 
 # @SessionAttributes
 > 화면과 화면 사이에 임시적으로 데이터를 유지할 때 사용 ex) 단계별 입력 폼 작성   
