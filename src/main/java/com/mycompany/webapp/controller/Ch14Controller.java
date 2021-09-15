@@ -23,9 +23,9 @@ import com.mycompany.webapp.dto.Ch14Board;
 import com.mycompany.webapp.dto.Ch14Member;
 import com.mycompany.webapp.dto.Pager;
 import com.mycompany.webapp.service.Ch14BoardService;
-import com.mycompany.webapp.service.Ch14MemeberService;
-import com.mycompany.webapp.service.Ch14MemeberService.JoinResult;
-import com.mycompany.webapp.service.Ch14MemeberService.LoginResult;
+import com.mycompany.webapp.service.Ch14MemberService;
+import com.mycompany.webapp.service.Ch14MemberService.JoinResult;
+import com.mycompany.webapp.service.Ch14MemberService.LoginResult;
 
 @Controller
 @RequestMapping("/ch14")
@@ -140,7 +140,7 @@ public class Ch14Controller {
 	}
 	
 	@Resource
-	private Ch14MemeberService memberService;
+	private Ch14MemberService memberService;
 	
 	@GetMapping("/join")
 	public String joinForm() {
