@@ -10,9 +10,9 @@ import com.mycompany.webapp.dao.Ch14MemberDao;
 import com.mycompany.webapp.dto.Ch14Member;
 
 @Service
-public class Ch14MemeberService {
+public class Ch14MemberService {
 
-	private static final Logger logger = LoggerFactory.getLogger(Ch14MemeberService.class);
+	private static final Logger logger = LoggerFactory.getLogger(Ch14MemberService.class);
 
 	// 열거 타입 선언
 	public enum JoinResult {
