@@ -158,3 +158,13 @@ public class Ch15Aspect6Around {
 	}
 }
 ```
+
+## Aspect Class에서 JSP로 데이터 넘기기
+- HttpServletRequest와 HttpSession의 객체를 아래와 같이 얻는다. 
+```java
+ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+HttpServletRequest request = sra.getRequest(); 		// HttpServletRequest 객체 얻기
+HttpSession session = request.getSession();	   		// HttpSession 객체 얻기
+
+HttpServletResponse response = sra.getResponse(); 	// HttpServletResponse 객체 얻기
+```
