@@ -19,7 +19,8 @@
 			<div class="card-header">AOP 예제</div>
 			<div class="card-body">
 				<a href="runTimeCheck" class="btn btn-info btn-sm">요청 처리 시간 측정</a>
-				<a href="javascript:getBoardList()" class="btn btn-success btn-sm">인증 여부 확인</a>
+				<a href="javascript:getBoardList()" class="btn btn-success btn-sm">인증 여부 확인(html 응답)</a>
+				<a href="javascript:getBoardList2()" class="btn btn-success btn-sm">인증 여부 확인(json 응답)</a>
 				<hr/>
 				<div>${methodName} 실행 시간 : ${howLong}</div>
 				<hr/>
@@ -32,11 +33,41 @@
 					$.ajax({
 						url: "getBoardList"
 					}).done(data=>{
-						if(data.result == "loginNeed"){
+						if(data.result=="authFail"){
 							$("#boardList").html("로그인이 필요합니다.");
-							window.location.href="login"; // href : get방식
+							window.location.href="login"
 						}else{
 							$("#boardList").html(data);
+						}
+					});
+				}
+				
+				function getBoardList2(){
+					$.ajax({
+						url: "getBoardList2"
+					}).done(data=>{ // {result:"success", boards: [{...}, {...}, ...]}
+						if(data.result == "authFail"){
+							$("#boardList").html("로그인이 필요합니다.");
+							window.location.href="login"
+						}else{
+							let html = "";
+							html += '<table class="table table-sm table-bordered container-fluid">';
+							html += '<tr>';
+							html += '<th class="col-sm-1">번호</th>';
+							html += '<th class="col-sm-7">제목</th>';
+							html += '<th class="col-sm-2">글쓴이</th>';
+							html += '<th class="col-sm-2">날짜</th>';
+							html +=	'</tr>';
+							for(var board of data.boards){
+								html +=	'<tr>';
+								html +=	'<td>'+ board.bno + '</td>';
+								html +=	'<td><a href="boardDetail?bno=' + board.bno +'">' + board.btitle +'</a></td>';
+								html +=	'<td>' + board.mid + '</td>';
+								html +=	'<td>' + board.bdate + '</td>';
+								html +=	'</tr>';
+							}
+							html +=	'</table>';
+							$("#boardList").html(html);
 						}
 					});
 				}
