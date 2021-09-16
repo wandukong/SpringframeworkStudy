@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycompany.webapp.dao.Ch16AccountDao">
+	<select id="selectAll" resultType="account">
+		select ano, owner, balance
+		from account
+	</select>
+	<select id="selectByAno" parameterType="int" resultType="account">
+		select ano, owner, balance
+		from account
+		where ano=#{value}
+	</select>
+	<update id="updateBalance" parameterType="account">
+		update account 
+		set balance=#{balance}
+		where ano=#{ano}
+	</update>
+</mapper>

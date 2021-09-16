@@ -17,6 +17,7 @@
 		<config>src/main/resources/mybatis/mapper-config.xml</config>
 		<config>src/main/resources/spring/root/ch14_mybatis.xml</config>
 		<config>src/main/resources/spring/dispatcher/ch15_aop.xml</config>
+		<config>src/main/resources/spring/root/ch16_transaction.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/spring/dispatcher/ch01_component_scan.xml</config>
