@@ -97,4 +97,10 @@
 			<a class="text-warning" href="${pageContext.request.contextPath}/ch16/content">Transaction</a>
 		</h6>
 	</li>
+	<li class="nav-item mb-2">
+		<h6 class="text-white">
+			<span class="mr-1">Ch17.</span>
+			<a class="text-warning" href="${pageContext.request.contextPath}/ch17/content">Spring Security</a>
+		</h6>
+	</li>
 </ul>

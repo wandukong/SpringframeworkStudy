@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 인증 절차가 필요없는 경로 설정 -->
+	<!-- 보안 필터 체인을 적용하지 않는 요청 경로 -->
+	<!-- 보안 필터 체인 설정보다 먼저 설정해야함 -->
+	<security:http pattern="/resources/**" security="none"/>
+	
+	<!-- 인증 절차를 설정함 -->
+	<security:http>
+		<!-- 로그인 설정 -->
+		<!-- <security:form-login 
+			login-page="/ch17/loginForm"
+			username-parameter="mid"
+			password-parameter="mpassword"
+			login-processing-url="/login" 
+			always-use-default-target="false"
+			default-target-url="/"
+			authentication-failure-url="/ch17/loginForm"
+		/> -->
+		
+		<security:form-login 
+			login-page="/ch17/loginForm"
+			username-parameter="mid"
+			password-parameter="mpassword"
+			login-processing-url="/login" 
+			authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-handler-ref="authenticationFailureHandler"
+		/> 
+		
+		<!-- 로그아웃 설정 -->
+		<security:logout
+			logout-url="/logout"
+			success-handler-ref="logoutSuccessHandler"/>
+			
+		<!-- 사이트간 요청 위조 방지 비활성화 -->
+		<!-- 내가 제공한 폼인지 아닌지 확인 -->
+		<!-- <input type="hidden" name="${_crsf.parameterName}" value="${_csrf.token}"> -->
+		<!-- 해당 정보가 오지 않으면, 자기가 보낸 폼이 아니라는 것으로 알고, 에러403에러 발생 -->
+		<!-- logout 도 post 방식으로 요청(_csrf의 토큰을 전달해야함) -->
+		<security:csrf disabled="true"/>
+		
+		
+		<!-- 요청 url 권한 설정 -->
+		<security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
+		<security:intercept-url pattern="/ch17/manager*" access="hasRole('ROLE_MANAGER')"/>
+		<security:intercept-url pattern="/ch17/user*" access="isAuthenticated()"/>
+		<security:intercept-url pattern="/**" access="permitAll"/>
+		
+		<!-- 권한 없음일 경우 보여줄 페이지 설정 -->
+		<security:access-denied-handler error-page="/ch17/error403"/>
+		
+		<!-- 로그인 중복 방지를 위한 설정 -->
+		<!-- 
+			max-sessions : 최대 로그인 수 
+			error-if-maximum-exceeded : 최대 로그인 수를 벗어나면 에러 발생 여부 -> true :새로운 로그인 차단, false : 이전 로그인 차단
+			error-if-expired-url-exceeded : 로그인이 만료되면 이동할 url
+		-->
+		<security:session-management>
+			<!-- <security:concurrency-control 
+				max-sessions="1"
+				error-if-maximum-exceeded="true" 
+			/> -->
+			
+			<security:concurrency-control 
+				max-sessions="1"
+				error-if-maximum-exceeded="false" 
+				expired-url="/ch17/loginForm"
+			/>
+		</security:session-management>
+		
+	</security:http>
+	
+	<!-- 권한 계층 설정 -->
+	<bean id="roleHierarchyImpl" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+		<property name="hierarchy">
+			<value>
+				ROLE_ADMIN > ROLE_MANAGER
+				ROLE_MANAGER > ROLE_USER
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="roleHierarchyAuthoritiesMapper" class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
+		<constructor-arg ref="roleHierarchyImpl"/>
+	</bean>
+	
+	<!-- 인증 관리자 설정(아이디와 패스워드를 DB와 비교해서 로그인 처리 관리) -->
+	<!-- 스프링 시큐리티에서 로그인 인증을 할 때는 mid, mpassword, menabled 순으로 세개의 정보를 꼭 가져와야한다. -->
+	<!-- users-by-username-query : 사용자가 입력한 값으로 유저 정보 불러오기 -->
+	<!-- group-authorities-by-username-query : 사용자가 입력한 값으로 유저 롤 불러오기 -->
+	
+	<security:jdbc-user-service 
+		id="jdbcUserService" 
+		data-source-ref="dataSource" 
+		users-by-username-query="select mid, mpassword, menabled from member where mid=?"
+		authorities-by-username-query="select mid, mrole from member where mid=?"/>
+		
+	
+	<bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+		<property name="userDetailsService" ref="jdbcUserService"/>
+		<property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper"/>
+	</bean>
+	
+	<security:authentication-manager>
+		<security:authentication-provider ref="daoAuthenticationProvider"/>
+	</security:authentication-manager>
+	
+	<!-- 인증 성공 또는 실패시 실행되는 핸들러 객체 설정 -->
+	<!-- 해당 파일에서 참조되는 객체는 루트에서 관리해야하는 객체여야하는데 -->
+	<!-- com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler는 dispatcher sevlet이 관리 하기때문에 -->
+	<bean id="authenticationSuccessHandler" class="com.mycompany.webapp.security.Ch17AuthenticationSuccessHandler">
+		<!-- 로그인 성공 후 리다이렉트로 이동할 경로 -->
+		<property name="alwaysUseDefaultTargetUrl" value="false"/>
+		<property name="defaultTargetUrl" value="/" />
+		<!-- 포워드로 가고싶을경우 설정 -->
+		<!-- <property name="useForward" value="true"/> -->
+	</bean>
+	<bean id="authenticationFailureHandler" class="com.mycompany.webapp.security.Ch17AuthenticationFailureHandler">
+		<!-- 로그인 실패 후 리다이렉트로 이동할 경로 -->
+		<property name="defaultFailureUrl" value="/ch17/loginForm"/>
+	</bean>
+	
+	<bean id="logoutSuccessHandler" class="com.mycompany.webapp.security.Ch17LogoutSuccessHandler">
+		<!-- 로그아웃 성공 후 리다이렉트로 이동할 경로 -->
+		<property name="defaultTargetUrl" value="/ch17/content"/>
+	</bean>
+</beans>
