@@ -165,6 +165,5 @@ public class Ch15Aspect6Around {
 ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 HttpServletRequest request = sra.getRequest(); 		// HttpServletRequest 객체 얻기
 HttpSession session = request.getSession();	   		// HttpSession 객체 얻기
-
 HttpServletResponse response = sra.getResponse(); 	// HttpServletResponse 객체 얻기
 ```
