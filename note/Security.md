@@ -340,6 +340,44 @@ public class Ch17LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler{
 <security:access-denied-handler error-page="/ch17/error403"/>
 ```
 
+## 인증 정보 불러오기
+
+#### Spring Security가 인증 정보를 저장하는 컨테이너 객체를 얻기
+
+```java
+SecurityContext securityContext = SequrityContextHolder.getConetxt(); 
+```
+<hr/>
+
+#### 인증 정보 객체 얻기
+```java
+Authentication authentication = securityContext.getAuthentication();
+```
+<hr />
+
+#### 인증 id 얻기
+```java
+String mid = authentication.getName();
+```
+<hr />
+
+#### 권한 얻기
+- 사용자의 권한이 여러 개일 수 있으니 **List**로 받아야한다.
+```java
+List<String> authorityList = new ArrayList<>();
+for(GrantedAuthority authority : authentication.getAuthorities()) {
+	authorityList.add(authority.getAuthority());
+}
+```
+<hr />
+
+#### client ip 얻기
+```java
+WebAuthenticationDetails wad = (WebAuthenticationDetails) authentication.getDetails();
+String ip = wad.getRemoteAddress();	
+```
+<hr />
+
 ## 🥪비밀번호 암호화
 - 비밀번호를 DB에 저장할 때, 어떤 알고리즘을 사용했는지 비밀번호에 명시하고 암호화된 비밀번호와 함께 저장해야 한다.
 <img src="https://user-images.githubusercontent.com/47289479/133894557-f4d810c1-ebac-4a67-a084-f3b9784beb2c.png" width=600px/>
