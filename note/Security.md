@@ -340,7 +340,7 @@ public class Ch17LogoutSuccessHandler extends SimpleUrlLogoutSuccessHandler{
 <security:access-denied-handler error-page="/ch17/error403"/>
 ```
 
-## 인증 정보 불러오기
+## 🍜인증 정보 불러오기
 
 #### Spring Security가 인증 정보를 저장하는 컨테이너 객체를 얻기
 
