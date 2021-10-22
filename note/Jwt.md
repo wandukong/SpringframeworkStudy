@@ -5,9 +5,11 @@
 <img src="https://user-images.githubusercontent.com/47289479/131851257-5b7f038c-8221-4afb-aa29-191dcd67ad44.png" width=400px />
 
 - header, payload, signature로 구성된다.
-	- header : alg와 tpy로 구성, alg는 서명시 사용하는 알고리즘, typ는 token type이다.
+	- header : 토큰 종류와 해시 알고리즘 정보 포함
+		- alg와 typ로 구성, alg는 서명시 사용하는 알고리즘, typ는 token type이다.
 	- payload : 토큰에 담을 정보, 담은 정보의 한 조각을 '클레임(claim)'이라고 부른다. 클레임의 종류로는 registered, public, private 클레임이 존재한다.
-	- signature : header의 인코딩값, payload의 인코딩값을 합친 후, 주어진 비밀키로 해쉬하여 생성한다.
+	- signature : 암호화된 서명(위조여부 확인용)이다. 
+		- header의 인코딩값, payload의 인코딩값을 합친 후, 주어진 비밀키로 해쉬하여 생성한다.
 
 
 - 회원인증, 정보교류 등에 사용한다.
